@@ -25,7 +25,7 @@
 тестируемой функции нужный аргумент и ожидаемый ответ.
 """
 
-from sprint5_data_sorting import bubble_sort
+from .data_sprint5.sprint5_data_sorting import bubble_sort
 
 def test_sort(sorting_algorithm):
     """ Тестируем алгоритм, сортирующий список по возрастанию."""    
