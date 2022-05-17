@@ -52,4 +52,5 @@ assert series_sum(empty) == result_empty, (
     'series_sum(empty) не работает с пустым списком')
 
 
-series_sum(['R', 2, 'D', 2, ' , держи курс ', 3, ' планету системы Медузы!'])
+for_print = series_sum(['R', 2, 'D', 2, ' , держи курс ', 3, ' планету системы Медузы!'])
+print(f'{for_print= !s}')
