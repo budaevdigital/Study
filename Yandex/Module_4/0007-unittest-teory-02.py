@@ -112,8 +112,6 @@ class TestCalc(unittest.TestCase):
     def test_sum_string_second_negative_value(self):         
 		# Можно провести тестирование исключения,         
 		# использовав менеджер контекста         
-        calc = data.MadCalculator()         
-		
         with self.assertRaises(ValueError):             
             TestCalc.calc.sum_string(1, -100500)      
 	
