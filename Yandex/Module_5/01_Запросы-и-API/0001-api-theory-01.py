@@ -4,8 +4,6 @@ from pprint import pprint  # для красивого вывода в конс�
 response = requests.get('https://www.swapi.tech/api/starships/9/')
 # Преобразовать JSON-строку в тип данных
 # позволит обрабатывать встроенными методами и функциями
-response = response.json()  
-
 # print(response.json()['result']['properties']['name'])  
 
 # А если запросить несуществующий ключ словаря - вернёт ошибку:
@@ -20,6 +18,6 @@ response = response.json()
 """
 # Если значение по-умолчанию не прописано, когда значения
 # по ключу нет, вернёт None 
-# print(response.json().get('result').get('properties').get('my_name'))
+print(response.json().get('result').get('properties').get('my_name'))
 
 pprint(response)
