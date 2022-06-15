@@ -1,3 +1,6 @@
 [submodule "Telegram_Bots/Predict_Stock_and_Crypto_for_Invest"]
 	path = Telegram_Bots/Predict_Stock_and_Crypto_for_Invest
 	url = https://github.com/budaevdigital/Predict_Stock_and_Crypto_for_Invest
+[submodule "Yandex/Module_6/01_DRF/kittygram"]
+	path = Yandex/Module_6/01_DRF/kittygram
+	url = https://github.com/budaevdigital/kittygram.git
