@@ -82,3 +82,18 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ('id', 'text', 'author', 'image', 'pub_date')
         read_only_fields = ('author',)
         model = Post
+
+
+# ------------------------------------------
+# urls.py
+from django.urls import path
+from .views import api_posts, api_posts_detail
+# импортируйте нужную функцию
+from rest_framework.authtoken import views
+
+
+urlpatterns = [
+    path('api/v1/posts/', api_posts),
+    path('api/v1/posts/<int:pk>/', api_posts_detail),
+    path('api/v1/api-token-auth/', views.obtain_auth_token),
+]
