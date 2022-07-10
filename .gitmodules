@@ -7,3 +7,6 @@
 [submodule "Yandex/Module_7/01_API/api_final_yatube"]
 	path = Yandex/Module_7/01_API/api_final_yatube
 	url = https://github.com/budaevdigital/api_final_yatube.git
+[submodule "Yandex/Module_7/02_API/api_yamdb"]
+	path = Yandex/Module_7/02_API/api_yamdb
+	url = https://github.com/budaevdigital/api_yamdb.git
