@@ -32,7 +32,9 @@ Q — попытка игрока. Обе строки имеют одинак�
 
 ## Формат вывода
 
-Выведите N строк. В строке i должна находиться одна из строк correct, present или absent — результат совпадения в позиции i строки Q со строкой S.
+Выведите N строк. В строке i должна находиться одна из строк 
+correct, present или absent — результат совпадения 
+в позиции i строки Q со строкой S.
 """
 
 quess_word = input().upper()
@@ -43,14 +45,19 @@ letter_is_used = [False] * len(quess_word)
 for i in range(len(quess_word)):
     letter_is_find = False
     if quess_word[i] == user_word[i]:
-        print('correct')
+        print("correct")
         letter_is_used[i] = True
     elif quess_word[i] != user_word[i]:
         for l in range(len(quess_word)):
-            if quess_word[l] == user_word[i] and quess_word[l] != user_word[l] and not letter_is_used[l] and i != (len(quess_word)-1):
-                print('present')
+            if (
+                quess_word[l] == user_word[i]
+                and quess_word[l] != user_word[l]
+                and not letter_is_used[l]
+                and i != (len(quess_word) - 1)
+            ):
+                print("present")
                 letter_is_used[l] = False
                 letter_is_find = True
                 break
         if not letter_is_find:
-            print('absent')
+            print("absent")
