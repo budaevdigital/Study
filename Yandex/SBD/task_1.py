@@ -35,18 +35,6 @@ Q — попытка игрока. Обе строки имеют одинак�
 Выведите N строк. В строке i должна находиться одна из строк correct, present или absent — результат совпадения в позиции i строки Q со строкой S.
 """
 
-# quess_word = input().upper()
-# user_word = input().upper()
-
-# if len(quess_word) == len(user_word):
-#     for i in range(len(quess_word)):
-#         if quess_word[i] == user_word[i]:
-#             print('correct')
-#         elif user_word[i] in quess_word and i != (len(quess_word)-1):
-#             print('present')
-#         else:
-#             print('absent')
-
 quess_word = input().upper()
 user_word = input().upper()
 
