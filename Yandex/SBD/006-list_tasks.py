@@ -16,8 +16,6 @@
 ## Формат вывода
 Функция должна напечатать элементы списка по одному в строке.
 """
-
-
 class Node:
     def __init__(self, value: str | None, next=None) -> None:
         self.value = value
