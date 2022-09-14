@@ -26,13 +26,13 @@ class DoubleConnectedNode:
         self.previous = previous
 
 
-def printed_linked_list(nodes: DoubleConnectedNode):
+def printed_linked_list(nodes: DoubleConnectedNode) -> None:
     while nodes:
         print(nodes.value, end="\n")
         nodes = nodes.next
 
 
-def solution(nodes):
+def solution(nodes: DoubleConnectedNode) -> DoubleConnectedNode:
     last = nodes
     pre_last = last.next
     last.next = None
