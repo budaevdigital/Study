@@ -35,24 +35,28 @@
 """
 from typing import Tuple
 
+
 def read_input() -> Tuple[int, str]:
     numb_time = int(input())
-    numb_massive = ''.join([input() for i in range(4)])
+    numb_massive = "".join([input() for i in range(4)])
     return numb_time, numb_massive
+
 
 def print_result(result: int) -> None:
     print(result)
+
 
 def calculate_result(numb_massive: str, numb_time: int) -> int:
     numbers = []
     for i in range(1, 10):
         count = numb_massive.count(str(i))
         numbers.append(count)
-    scores = len([
-        element for element in numbers if 0 < int(element) <= numb_time * 2
-    ])
+    scores = len(
+        [element for element in numbers if 0 < int(element) <= numb_time * 2]
+    )
     return scores
 
-if __name__ == '__main__':  
+
+if __name__ == "__main__":
     numb_time, numb_massive = read_input()
     print_result(calculate_result(numb_massive, numb_time))

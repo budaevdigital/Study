@@ -48,13 +48,14 @@ def two_sum(
     numb_chips: int, points_chips: List[int], numb_wish: int
 ) -> Optional[Tuple[int, int]]:
     previous = set()
-    for i in points_chips:         
-        y = numb_wish - i        
-        if y in previous:             
-            return i, y         
+    for i in points_chips:
+        y = numb_wish - i
+        if y in previous:
+            return i, y
         else:
             previous.add(i)
     return None
+
 
 def read_input() -> Tuple[int, List[int], int]:
     numb_chips = int(input())
@@ -62,11 +63,13 @@ def read_input() -> Tuple[int, List[int], int]:
     numb_wish = int(input())
     return numb_chips, points_chips, numb_wish
 
+
 def print_result(result: Optional[Tuple[int, int]]) -> None:
     if result == None:
         print(None)
     else:
         print(" ".join(list(map(str, result))))
+
 
 numb_chips, points_chips, numb_wish = read_input()
 print_result(two_sum(numb_chips, points_chips, numb_wish))

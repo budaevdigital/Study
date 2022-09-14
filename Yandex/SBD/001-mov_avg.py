@@ -14,4 +14,5 @@ def moving_average(N, Q, K):
         result.append(current_avg)
     return result
 
+
 print(" ".join(list(map(str, moving_average(N, Q, K)))))

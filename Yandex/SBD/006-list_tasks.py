@@ -16,23 +16,28 @@
 ## Формат вывода
 Функция должна напечатать элементы списка по одному в строке.
 """
+
+
 class Node:
     def __init__(self, value: str | None, next=None) -> None:
         self.value = value
         self.next = next
 
+
 def printed_linked_list(nodes: Node):
     while nodes:
-        print(nodes.value, end='\n')
+        print(nodes.value, end="\n")
         nodes = nodes.next
 
+
 def create_list_task() -> Node:
-    node_3 = Node('Four task')
-    node_2 = Node('Three task', node_3)
-    node_1 = Node('Second task', node_2)    
-    node_0 = Node('First task', node_1)
+    node_3 = Node("Four task")
+    node_2 = Node("Three task", node_3)
+    node_1 = Node("Second task", node_2)
+    node_0 = Node("First task", node_1)
     return node_0, node_1, node_2, node_3
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     node_0, node_1, node_2, node_3 = create_list_task()
     printed_linked_list(node_2)

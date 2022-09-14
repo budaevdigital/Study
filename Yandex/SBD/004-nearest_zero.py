@@ -36,13 +36,16 @@
 
 from typing import List, Tuple
 
+
 def read_input() -> Tuple[int, List[int]]:
     numb_count = int(input())
     numb_house = list(map(int, input().split()))
     return numb_count, numb_house
 
+
 def print_result(result: List[int]) -> None:
     print(" ".join(list(map(str, result))))
+
 
 def nearest_zero(numb_house: List[int], numb_count: int) -> List[int]:
     output = [0] * len(numb_house)
@@ -53,11 +56,14 @@ def nearest_zero(numb_house: List[int], numb_count: int) -> List[int]:
         output[index] = zero_index[0] - index
     for index in range(len(zero_index) - 1):
         for position in range(zero_index[index] + 1, zero_index[index + 1]):
-            output[position] = min(position - zero_index[index], zero_index[index + 1] - position)
+            output[position] = min(
+                position - zero_index[index], zero_index[index + 1] - position
+            )
     for index in range(zero_index[-1] + 1, len(numb_house)):
         output[index] = index - zero_index[-1]
     return output
 
-if __name__ == '__main__':  
+
+if __name__ == "__main__":
     numb_count, numb_house = read_input()
     print_result(nearest_zero(numb_house, numb_count))
