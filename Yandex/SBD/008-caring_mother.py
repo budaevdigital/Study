@@ -18,3 +18,30 @@
 Функция возвращает индекс первого вхождения искомого элемента в список (индексация начинается с нуля).
 Если элемент не найден, нужно вернуть -1.
 """
+
+
+class Node:
+    def __init__(self, value: str | None, next=None) -> None:
+        self.value = value
+        self.next = next
+
+
+def solution(nodes, value):
+    index = 0
+    while value != index:
+        if nodes == None:
+            return -1
+        if value == nodes.value:
+            return index
+        else:
+            nodes = nodes.next
+            index += 1
+
+
+if __name__ == "__main__":
+    node_3 = Node("Four task")
+    node_2 = Node("Three task", node_3)
+    node_1 = Node("Second task", node_2)
+    node_0 = Node("First task", node_1)
+    search_index_node = solution(node_0, "Three task")
+    print(search_index_node)
