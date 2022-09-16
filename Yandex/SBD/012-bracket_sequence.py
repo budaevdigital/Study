@@ -40,6 +40,7 @@ True
 True
 """
 
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -58,16 +59,14 @@ class Stack:
     def isEmpty(self):
         return self.items == []
 
+
 def read_input() -> str:
     result = input()
     return result
 
+
 def is_correct_bracket_seq(string_sequence: str) -> bool:
-    correct_sequence = {
-        '[':']',
-        '{':'}',
-        '(':')'
-    }
+    correct_sequence = {"[": "]", "{": "}", "(": ")"}
     stack_sequence = Stack()
     # Отлавливаем вариант, когда последовательность не полная
     if (len(string_sequence) % 2) != 0 or len(string_sequence) == 0:
@@ -77,12 +76,16 @@ def is_correct_bracket_seq(string_sequence: str) -> bool:
         if char in correct_sequence.keys():
             stack_sequence.push(char)
         # Если не пустой и value correct_sequence равен char в цикле
-        elif not stack_sequence.isEmpty() and correct_sequence[stack_sequence.peek()] == char:
+        elif (
+            not stack_sequence.isEmpty()
+            and correct_sequence[stack_sequence.peek()] == char
+        ):
             stack_sequence.pop()
     if stack_sequence.isEmpty():
         return True
     else:
         return False
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(is_correct_bracket_seq(read_input()))
