@@ -62,26 +62,26 @@ class MyQueueSized:
         self.head = 0
         self.tail = 0
         self.size_queue = 0
-    
+
     def push(self, object):
         if self.size() >= self.max_size:
-            return 'error'
+            return "error"
         self.queue[self.tail] = object
         self.tail = (self.tail + 1) % self.max_size
         self.size_queue += 1
 
     def pop(self):
         if self.isEmpty():
-            return 'None'
+            return "None"
         current_position = self.queue[self.head]
         self.queue[self.head] = None
         self.head = (self.head + 1) % self.max_size
         self.size_queue -= 1
         return current_position
-    
+
     def peek(self):
         if self.isEmpty():
-            return 'None'
+            return "None"
         return self.queue[self.head]
 
     def size(self):
@@ -98,15 +98,15 @@ def read_input() -> List[str]:
     my_queue = MyQueueSized(size_queue)
     for count in range(count_commands):
         command = input().split()
-        if command[0] == 'push':
+        if command[0] == "push":
             add_queue = my_queue.push(command[1])
-            if add_queue == 'error':
-                result.append('error')
-        if command[0] == 'pop':
+            if add_queue == "error":
+                result.append("error")
+        if command[0] == "pop":
             result.append(my_queue.pop())
-        if command[0] == 'peek':
+        if command[0] == "peek":
             result.append(my_queue.peek())
-        if command[0] == 'size':
+        if command[0] == "size":
             result.append(my_queue.size())
     return result
 
@@ -116,5 +116,5 @@ def print_result(result: List[str]) -> None:
         print(string)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print_result(read_input())

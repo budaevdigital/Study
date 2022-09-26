@@ -24,7 +24,7 @@ class QueueList:
         def __init__(self, value=None, next=None):
             self.value = value
             self.next = next
-        
+
         def __str__(self):
             return self.value
 
@@ -35,7 +35,7 @@ class QueueList:
 
     def get(self):
         if self.isEmpty():
-            return 'error'
+            return "error"
         result = self.head
         if self.size == 1:
             self.head = self.Node()
@@ -64,9 +64,10 @@ class QueueList:
 
     def size(self):
         return self.size_list
-    
+
     def isEmpty(self):
         return self.size_list == 0
+
 
 def read_input() -> List[str]:
     result = []
@@ -74,20 +75,21 @@ def read_input() -> List[str]:
     queue_list = QueueList()
     for count in range(count_commands):
         command = input().split()
-        if command[0] == 'put':
+        if command[0] == "put":
             queue_list.put(command[1])
-        if command[0] == 'get':
+        if command[0] == "get":
             get_queue = queue_list.get()
             result.append(get_queue)
-        if command[0] == 'size':
+        if command[0] == "size":
             size_queue = queue_list.size()
             result.append(size_queue)
     return result
+
 
 def printed_list_queue(results: List[str]) -> None:
     for row in results:
         print(row)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     printed_list_queue(read_input())
