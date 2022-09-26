@@ -78,8 +78,6 @@ def read_input() -> List[str]:
             queue_list.put(command[1])
         if command[0] == 'get':
             get_queue = queue_list.get()
-            # if get_queue == 'error':
-            #     result.append('error')
             result.append(get_queue)
         if command[0] == 'size':
             size_queue = queue_list.size()
