@@ -19,9 +19,8 @@ def to_lower_replace_email(string: str, list_email: Tuple[str, ...]) -> str:
         tech_email = tech_email.replace(tech_email, list_email[tech_email])
     return domain + "@" + tech_email + "." + domain_zone
 
-
-print(to_lower_replace_email("YAndex@yandex-team.com", list_email))
-
 assert (
     to_lower_replace_email("SDHwehs@gm.com", list_email) == "sdhwehs@gmail.com"
 ), "Функция проверки технического емайла работает не корректно!"
+
+print(to_lower_replace_email("YAndex@yandex-team.com", list_email))
