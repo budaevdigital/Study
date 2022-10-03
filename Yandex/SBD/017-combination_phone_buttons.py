@@ -43,19 +43,31 @@ def read_input() -> List[str]:
     arr_numbers = input("Введите числовую последовательность клавиш: ")
     return arr_numbers
 
+
 def recursion_digits(digits, index, result):
-    letters = {'2':'abc', '3':'def','4':'ghi', '5':'jkl', '6':'mno', '7':'pqrs','8':'tuv', '9':'wxyz'}
+    letters = {
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz",
+    }
     if len(digits) == 0:
         result.append(index)
     else:
         for letter in letters[digits[0]]:
             recursion_digits(digits[1:], index + letter, result)
 
+
 def main():
     result = []
     digits = read_input()
-    recursion_digits(digits, '', result)
+    recursion_digits(digits, "", result)
     print(" ".join(result))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

@@ -47,29 +47,34 @@ def gen_binaty_three_bracket(n, prefix, result, size):
     if len(prefix) == size:
         result.append(prefix)
     else:
-        gen_binaty_three_bracket(n-1, prefix + '(', result, size)
-        gen_binaty_three_bracket(n-1, prefix + ')', result, size)
+        gen_binaty_three_bracket(n - 1, prefix + "(", result, size)
+        gen_binaty_three_bracket(n - 1, prefix + ")", result, size)
+
 
 def is_true_bracket(string_bracket: str) -> bool:
     while "()" in string_bracket:
         string_bracket = string_bracket.replace("()", "")
     return not string_bracket
 
+
 def see_correct_bracket(list_bracket: List[str]) -> List[str]:
     correct_bracket = []
-    for row in list_bracket:            
+    for row in list_bracket:
         if is_true_bracket(row):
             correct_bracket.append(row)
     return correct_bracket
 
-def read_input() -> Tuple[int,int]: 
+
+def read_input() -> Tuple[int, int]:
     count_bracket = int(input())
     size_string_bracket = count_bracket * 2
     return count_bracket, size_string_bracket
 
+
 def print_correct_bracket(correct_bracket: List[str]) -> None:
     for row in correct_bracket:
         print(row)
+
 
 def main():
     generate_bracket = []
@@ -80,5 +85,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

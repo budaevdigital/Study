@@ -96,7 +96,8 @@ def find_first_day_to_buy(days: int, arr_numbers: int, cost_bike: int) -> int:
             cost_bike=cost_bike,
             days_left=0,
             days_right=days,
-        ) + 1
+        )
+        + 1
     )
 
 
