@@ -32,7 +32,6 @@
 Вывод
 542210
 """
-from re import X
 from typing import List, Tuple
 
 class SizeArrayError(Exception):
