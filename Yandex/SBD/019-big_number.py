@@ -34,6 +34,7 @@
 """
 from typing import List, Tuple
 
+
 class SizeArrayError(Exception):
     """Только для отлова исключений, в случае некорректного размера массива"""
 
@@ -43,14 +44,19 @@ def reading_input() -> Tuple[int, List[int]]:
     numbers_array = list(map(int, input().split(" ")))
     return count_numbers, numbers_array
 
+
 def return_first_number(number: int) -> int:
     string = str(number)
     return int(string[0])
 
-def compare_numbers(numb_one: int, numb_two: int) -> bool:
-    return return_first_number(numb_one) > return_first_number(numb_two) 
 
-def insertion_sort_by_comparator(array: List[int], count_numbers: int) -> List[int]:
+def compare_numbers(numb_one: int, numb_two: int) -> bool:
+    return return_first_number(numb_one) > return_first_number(numb_two)
+
+
+def insertion_sort_by_comparator(
+    array: List[int], count_numbers: int
+) -> List[int]:
     """
     Функция, которая возвращает массив нужной последовательности
 
@@ -63,7 +69,7 @@ def insertion_sort_by_comparator(array: List[int], count_numbers: int) -> List[i
     >>> insertion_sort_by_comparator([2, 4, 5, 2, 10], 5)
     [5, 4, 2, 2, 10]
     """
-	      
+
     if count_numbers != len(array):
         raise SizeArrayError(
             "Указан неверный размер массива. Введите правильные данные"
@@ -71,15 +77,17 @@ def insertion_sort_by_comparator(array: List[int], count_numbers: int) -> List[i
     for i in range(0, len(array)):
         item_to_insert = array[i]
         j = i
-        while j > 0 and compare_numbers(item_to_insert, array[j-1]):
-            array[j] = array[j-1]
+        while j > 0 and compare_numbers(item_to_insert, array[j - 1]):
+            array[j] = array[j - 1]
             j -= 1
         array[j] = item_to_insert
     return array
 
+
 def print_result(array: List[int]):
     string = "".join(map(str, array))
     print(string)
+
 
 def main():
     count_numbers, numbers_array = reading_input()
@@ -92,5 +100,6 @@ if __name__ == "__main__":
     # который протестируется перед запуском.
     # Либо запустить 'python3 -m doctest <название файла.py>'
     import doctest
+
     doctest.testmod()
     main()
