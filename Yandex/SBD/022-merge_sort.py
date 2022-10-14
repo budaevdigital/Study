@@ -76,7 +76,7 @@ def merge_sort(array: List[int], left: int, right: int):
         merge_sort(array, middle, right)
         merge(array, left, middle, right)
 
-def test():
+def main():
     a = [1, 4, 9, 2, 10, 11]
     b = merge(a, 0, 3, 6)
     expected = [1, 2, 4, 9, 10, 11]
@@ -86,4 +86,5 @@ def test():
     expected = [1, 1, 2, 2, 4, 10]
     assert c == expected
         
-test()
+if __name__ == "__main__":
+    main()
