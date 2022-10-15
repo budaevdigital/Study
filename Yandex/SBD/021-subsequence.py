@@ -55,7 +55,10 @@ def search_subsequence(first_str: str, second_str: str):
     """
 
     for index_one in range(0, len(first_str)):
-        if first_str[index_one] in second_str[index_one:int(len(second_str))]:
+        if (
+            first_str[index_one]
+            in second_str[index_one : int(len(second_str))]
+        ):
             continue
         else:
             return False
@@ -68,7 +71,8 @@ def main():
     print(result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()

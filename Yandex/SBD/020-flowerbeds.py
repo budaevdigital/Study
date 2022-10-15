@@ -100,8 +100,8 @@ def merge_sort(array: List) -> List:
     """
     if len(array) == 1:
         return array
-    left = merge_sort(array[0:int(len(array)/2)])
-    right = merge_sort(array[int(len(array)/2):len(array)])
+    left = merge_sort(array[0 : int(len(array) / 2)])
+    right = merge_sort(array[int(len(array) / 2) : len(array)])
     result = [0] * len(array)
     l, r, k = 0, 0, 0
     while l < len(left) and r < len(right):
@@ -138,13 +138,17 @@ def search_flowerbed(sorted_array: List) -> List:
     """
     left_pos = 0
     right_pos = 1
-    for index in range(len(sorted_array)-1):
-        if sorted_array[index+1][left_pos] <= sorted_array[index][right_pos]:
+    for index in range(len(sorted_array) - 1):
+        if sorted_array[index + 1][left_pos] <= sorted_array[index][right_pos]:
             # True, если правая часть меньше, чем правая часть в следующем индексе
-            temp = sorted_array[index][right_pos] < sorted_array[index+1][right_pos]
-            sorted_array[index+1][left_pos] = sorted_array[index][left_pos]
-            sorted_array[index +
-                         1][right_pos] = sorted_array[index+temp][right_pos]
+            temp = (
+                sorted_array[index][right_pos]
+                < sorted_array[index + 1][right_pos]
+            )
+            sorted_array[index + 1][left_pos] = sorted_array[index][left_pos]
+            sorted_array[index + 1][right_pos] = sorted_array[index + temp][
+                right_pos
+            ]
             sorted_array[index] = []
     return sorted_array
 
@@ -166,5 +170,6 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()

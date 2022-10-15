@@ -50,7 +50,7 @@ def merge(arr: List[int], left: int, mid: int, right: int) -> List[int]:
     l, r = 0, 0
     k = left
     while l < len(arr_left) and r < len(arr_right):
-        if arr_left[l] <= arr_right[r]:       
+        if arr_left[l] <= arr_right[r]:
             arr[k] = arr_left[l]
             l += 1
         else:
@@ -59,7 +59,7 @@ def merge(arr: List[int], left: int, mid: int, right: int) -> List[int]:
         k += 1
     while l < len(arr_left):
         arr[k] = arr_left[l]
-        l += 1        
+        l += 1
         k += 1
     while r < len(arr_right):
         arr[k] = arr_right[r]
@@ -67,14 +67,16 @@ def merge(arr: List[int], left: int, mid: int, right: int) -> List[int]:
         k += 1
     return arr
 
+
 def merge_sort(array: List[int], left: int, right: int):
     if right - left <= 1:
         return array
     else:
         middle = (right + left) // 2
-        merge_sort(array, left, middle) 
+        merge_sort(array, left, middle)
         merge_sort(array, middle, right)
         merge(array, left, middle, right)
+
 
 def main():
     a = [1, 4, 9, 2, 10, 11]
@@ -82,9 +84,10 @@ def main():
     expected = [1, 2, 4, 9, 10, 11]
     assert b == expected
     c = [1, 4, 2, 10, 1, 2]
-    merge_sort(c, 0 , 6)
+    merge_sort(c, 0, 6)
     expected = [1, 1, 2, 2, 4, 10]
     assert c == expected
-        
+
+
 if __name__ == "__main__":
     main()
