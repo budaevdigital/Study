@@ -6,7 +6,7 @@ import aiohttp
 
 async def task(task_id):
     async with aiohttp.ClientSession() as session:
-        response = await session.get('https://python.org')
+        response = await session.get("https://python.org")
         response_html = await response.text()
         print(response_html[:15])
     print(f"Задача {task_id} выполнена!")
