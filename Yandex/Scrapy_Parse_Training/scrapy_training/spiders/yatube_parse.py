@@ -19,6 +19,7 @@
 """
 
 import scrapy
+import scrapy_training.items import YatubeParsingItem 
 
 
 class YatubeParseSpider(scrapy.Spider):
@@ -40,13 +41,14 @@ class YatubeParseSpider(scrapy.Spider):
                 edit_list.append(row.strip())
             # Преобразуем подготовленный список в строку
             result_text = "".join(edit_list)
-            yield {
+            data = {
                 # Парсим автора
                 "author": body.css("strong.d-block::text").get(),
                 "text": result_text,
                 # Парсим дату
                 "date": body.css("small.text-muted::text").get(),
             }
+            yield YatubeParsingItem(data)
         # Ищем ссылку на сл. страницу
         next_page = response.css("a:contains('Следующая')::attr(href)").get()
         if next_page is not None:

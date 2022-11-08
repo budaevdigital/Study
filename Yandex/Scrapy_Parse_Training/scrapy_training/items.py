@@ -6,7 +6,8 @@
 import scrapy
 
 
-class ScrapyTrainingItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class YatubeParsingItem(scrapy.Item):
+    # Для дополнительно валидации, опишем модели
+    author = scrapy.Field()
+    text = scrapy.Field()
+    date = scrapy.Field()
