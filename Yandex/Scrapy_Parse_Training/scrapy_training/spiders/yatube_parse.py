@@ -19,7 +19,7 @@
 """
 
 import scrapy
-import scrapy_training.items import YatubeParsingItem 
+from scrapy_training.items import YatubeParsingItem
 
 
 class YatubeParseSpider(scrapy.Spider):
