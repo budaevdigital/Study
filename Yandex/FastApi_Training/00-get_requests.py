@@ -30,3 +30,7 @@ def multiplication(
     if depth is not None:
         result *= depth
     return result
+
+if __name__ == "__main__":
+    uvicorn.run(f"{__name__}:app", reload=True)
+
