@@ -81,7 +81,7 @@ def sell_product(
     ),
     price: int = Query(
         1000,
-        alias="start_price",
+        alias="start-price",
         title="Укажите начальную цену",
         description="Необязательно. Если не указана, то стартовая цена = 1000",
     ),
