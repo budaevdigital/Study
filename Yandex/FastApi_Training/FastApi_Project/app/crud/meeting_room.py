@@ -1,6 +1,6 @@
 # app/crud/meeting_room.py
 
-from typing import Optional
+from typing import Optional, List
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -48,3 +48,9 @@ async def get_room_id_by_name(
     # Извлекаем из него конкретное значение
     db_room_id = db_room_id.scalars().first()
     return db_room_id
+
+
+async def read_all_rooms_from_db(session: AsyncSession) -> List[MeetingRoom]:
+    db_room_all = await session.execute(select(MeetingRoom))
+    # Получаем список объектов из класса Result(db_room_all)
+    return db_room_all.scalars().all()

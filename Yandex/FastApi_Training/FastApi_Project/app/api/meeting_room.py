@@ -1,16 +1,24 @@
 # app/api/meeting_room.py
-
+from typing import List
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_async_session
-from app.crud.meeting_room import create_metting_room, get_room_id_by_name
-from app.schemas.meeting_room import MeetingRoomCreate, MeetingRoomDB
+from app.crud.meeting_room import (
+    create_metting_room,
+    get_room_id_by_name,
+    read_all_rooms_from_db,
+)
+from app.schemas.meeting_room import (
+    MeetingRoomCreate,
+    MeetingRoomDB,
+)
 
-router = APIRouter()
+# в параметре tags пропишем общий тег, который отобразится в Swagger
+router = APIRouter(prefix="/meeting_rooms", tags=["Meeting Rooms"])
 
 
 @router.post(
-    "/meeting_rooms/",
+    "/",
     response_model=MeetingRoomDB,
     # Чтобы не показывать опциональные поля None, укажем параметр _exclude_none
     # Если надо не показывать все значения по-умолчанию - _exclude_default
@@ -33,3 +41,15 @@ async def create_new_meeting_room(
         # Вторым параметром передаём сессию в CRUD функцию
     new_room = await create_metting_room(meeting_room, session)
     return new_room
+
+
+@router.get(
+    "/",
+    response_model=List[MeetingRoomDB],
+    response_model_exclude_none=True,
+)
+async def get_all_meeting_rooms(
+    session: AsyncSession = Depends(get_async_session),
+):
+    get_rooms = await read_all_rooms_from_db(session)
+    return get_rooms
