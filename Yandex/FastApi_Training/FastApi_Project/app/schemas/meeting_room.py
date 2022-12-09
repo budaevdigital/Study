@@ -31,3 +31,11 @@ class MeetingRoomDB(MeetingRoomCreate):
     # а не только словарь или json
     class Config:
         orm_mode = True
+
+
+class MeetingRoomUpdate(MeetingRoom):
+    @validator("name")
+    def name_cannot_be_null(cls, value):
+        if value is None:
+            raise ValueError("Имя переговорки не может быть пустым")
+        return value
