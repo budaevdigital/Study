@@ -9,8 +9,10 @@ from app.crud.meeting_room import (
     read_all_rooms_from_db,
     update_meeting_room,
     get_meeting_room_by_id,
+    delete_meeting_room,
 )
 from app.schemas.meeting_room import (
+    MeetingRoom,
     MeetingRoomCreate,
     MeetingRoomDB,
     MeetingRoomUpdate,
@@ -64,12 +66,7 @@ async def partially_update_meeting_room(
     obj_in: MeetingRoomUpdate,
     session: AsyncSession = Depends(get_async_session),
 ):
-    # Получаем объект из БД по ID
-    meeting_room = await get_meeting_room_by_id(meeting_room_id, session)
-
-    if meeting_room is None:
-        raise HTTPException(status_code=404, detail="Переговорка не найдена")
-
+    meeting_room = await check_meeting_room_exists(meeting_room_id, session)
     if obj_in.name is not None:
         # Если в переданных данных, есть поле name
         # проверяем его на уникальность
@@ -78,6 +75,20 @@ async def partially_update_meeting_room(
     # Когда проверки завершены - передаём в корутину
     # все необходимые для обновления данные
     meeting_room = await update_meeting_room(meeting_room, obj_in, session)
+    return meeting_room
+
+
+# ручка для удаления объекта из БД
+@router.delete(
+    "/{meeting_room_id}",
+    response_model=MeetingRoomDB,
+    response_model_exclude_none=True,
+)
+async def remove_meeting_room(
+    meeting_room_id: int, session: AsyncSession = Depends(get_async_session)
+):
+    meeting_room = await check_meeting_room_exists(meeting_room_id, session)
+    meeting_room = await delete_meeting_room(meeting_room, session)
     return meeting_room
 
 
@@ -91,3 +102,14 @@ async def check_name_duplicate(room_name: str, session: AsyncSession) -> None:
             status_code=422,
             detail="Такая переговорная комната уже существует!",
         )
+
+
+# Корутина, которая проверяет, существует ли объект в БД с таким ID
+async def check_meeting_room_exists(
+    meeting_room_id: int, session: AsyncSession
+) -> MeetingRoom:
+    # Получаем объект из БД по ID
+    meeting_room = await get_meeting_room_by_id(meeting_room_id, session)
+    if meeting_room is None:
+        raise HTTPException(status_code=404, detail="Переговорка не найдена")
+    return meeting_room
