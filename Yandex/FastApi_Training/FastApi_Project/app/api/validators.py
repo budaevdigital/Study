@@ -2,7 +2,8 @@
 from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.crud.meeting_room import meeting_room_crud
-from app.models.meeting_room import MeetingRoom
+from app.crud.reservation import reservation_crud
+from app.models import MeetingRoom, Reservation
 
 
 # Корутина, которая проверяет уникальность имени переговорной
@@ -26,3 +27,24 @@ async def check_meeting_room_exists(
     if meeting_room is None:
         raise HTTPException(status_code=404, detail="Переговорка не найдена")
     return meeting_room
+
+
+async def check_reservation_intersections(**kwargs) -> None:
+    reservation = await reservation_crud.get_reservations_at_the_same_time(
+        **kwargs
+    )
+    if reservation:
+        raise HTTPException(status_code=422, detail=str(reservation))
+
+
+async def check_reservation_before_edit(
+    reservation_id: int, session: AsyncSession
+) -> Reservation:
+    reservation = await reservation_crud.get(
+        # Для лучшего понимания, можно передавать параметры по ключу
+        obj_id=reservation_id,
+        session=session,
+    )
+    if not reservation:
+        raise HTTPException(status_code=404, detail="Бронь не найдена!")
+    return reservation
