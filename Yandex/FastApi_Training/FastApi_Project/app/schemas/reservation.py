@@ -1,13 +1,19 @@
 # app/schemas/reservation.py
 
-from datetime import datetime
-from pydantic import BaseModel, Extra, root_validator, validator
+from datetime import datetime, timedelta
+from pydantic import BaseModel, Extra, root_validator, validator, Field
+
+
+FROM_TIME = (datetime.now() + timedelta(minutes=10)).isoformat(
+    timespec="minutes"
+)
+TO_TIME = (datetime.now() + timedelta(hours=10)).isoformat(timespec="minutes")
 
 
 # Базовый класс, от которого будем наследоваться
 class ReservationRoomBase(BaseModel):
-    from_reserve: datetime
-    to_reserve: datetime
+    from_reserve: datetime = Field(..., example=FROM_TIME)
+    to_reserve: datetime = Field(..., example=TO_TIME)
 
     class Config:
         # Запрещает передавать параметры, которые не будут описаны в схеме
